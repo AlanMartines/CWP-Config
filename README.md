@@ -13,7 +13,7 @@ hostname srv1.example.com
 #### Installer
 
 ```sh
-wget https://github.com/AlanMartines/CWP-Config/blob/master/install_cwp.sh && bash install_cwp.sh
+wget https://raw.githubusercontent.com/AlanMartines/CWP-Config/master/install_cwp.sh && bash install_cwp.sh
 ```
 
 ###### NOTA: Instale apenas no CentOS 7 Minimal
