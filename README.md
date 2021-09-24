@@ -13,9 +13,7 @@ hostname srv1.example.com
 #### Installer
 
 ```sh
-cd /usr/local/src
-wget https://raw.githubusercontent.com/wnpower/CWP-config/master/install_cwp.sh 
-sh install_cwp.sh
+wget https://raw.githubusercontent.com/wnpower/CWP-config/master/install_cwp.sh && bash install_cwp.sh
 ```
 
 ###### NOTA: Instale apenas no CentOS 7 Minimal
