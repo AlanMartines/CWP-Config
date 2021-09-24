@@ -2,7 +2,7 @@
 
 Este script instala e configura o CentOS Web Panel de acordo com as boas práticas recomendadas por **WNPower**
 
-#### Modo de uso:
+#### Installer for CentOS 7
 
 #### Setup Hostname
 
