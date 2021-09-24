@@ -6,12 +6,12 @@ LOGFILE="/var/log/configure_linux.log"
 SSH_PORT=2022
 
 if [ ! -f /etc/redhat-release ]; then
-	echo "CentOS nã detectado, abortando."
+	echo "CentOS não detectado, abortando."
 	exit 0
 fi
 
 echo "Atualizando SO..."
-yum -y install wget
+yum -y install wget; yum -y install yum-utils
 yum update -y
 yum groupinstall "Base" --skip-broken -y
 
@@ -39,7 +39,7 @@ do
 
 done
 
-echo "Reescribiendo /etc/resolv.conf..."
+echo "Reescrevendo /etc/resolv.conf..."
 
 echo "nameserver 8.8.8.8" > /etc/resolv.conf # Google
 echo "nameserver 8.8.4.4" >> /etc/resolv.conf # Google
@@ -48,15 +48,15 @@ echo "Configurando SSH..."
 sed -i 's/^X11Forwarding.*/X11Forwarding no/' /etc/ssh/sshd_config
 sed -i 's/#UseDNS.*/UseDNS no/' /etc/ssh/sshd_config
 
-echo "Cambiando puerto SSH..."
+echo "Mudando de porta SSH..."
 if [ -d /etc/csf ]; then
-	echo "Abriendo CSF..."
+	echo "Abbrindo porta no CSF..."
         CURR_CSF_IN=$(grep "^TCP_IN" /etc/csf/csf.conf | cut -d'=' -f2 | sed 's/\ //g' | sed 's/\"//g' | sed "s/,$SSH_PORT,/,/g" | sed "s/,$SSH_PORT//g" | sed "s/$SSH_PORT,//g" | sed "s/,,//g")
         sed -i "s/^TCP_IN.*/TCP_IN = \"$CURR_CSF_IN,$SSH_PORT\"/" /etc/csf/csf.conf
         csf -r
 fi
 
-echo "Cambiando puerto SSH default 22 a $SSH_PORT..."
+echo "Mudando de porta SSH default 22 para $SSH_PORT..."
 sed -i "s/^\(#\|\)Port.*/Port $SSH_PORT/" /etc/ssh/sshd_config
 
 service sshd restart
@@ -95,7 +95,7 @@ else
         systemctl start yum-cron.service
 fi
 
-echo "Configurando SSD (de poseer)..."
+echo "Configurando SSD (de ter)..."
 for DEVFULL in /dev/sg? /dev/sd?; do
 	DEV=$(echo "$DEVFULL" | cut -d'/' -f3)
         if [ -f "/sys/block/$DEV/queue/rotational" ]; then
@@ -113,17 +113,17 @@ if grep -i "release 8" /etc/redhat-release > /dev/null; then
         systemctl enable chronyd
 else
 	yum install ntpdate -y
-        echo "Sincronizando fecha con pool.ntp.org..."
+        echo "Sincronizando data com pool.ntp.org..."
         ntpdate 0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org 0.south-america.pool.ntp.org
 fi
 
 if [ -f /usr/share/zoneinfo/America/Buenos_Aires ]; then
-        echo "Seteando timezone a America/Buenos_Aires..."
+        echo "Setando timezone a America/Caracas..."
         mv /etc/localtime /etc/localtime.old
-        ln -s /usr/share/zoneinfo/America/Buenos_Aires /etc/localtime
+        ln -s /usr/share/zoneinfo/America/Caracas /etc/localtime
 fi
 
-echo "Seteando fecha del BIOS..."
+echo "Setando na BIOS..."
 hwclock -r
 
 echo "Instalando GIT..."
