@@ -3,12 +3,13 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 CWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 HOSTNAME=$(hostname -f)
 
-echo "██╗    ██╗███╗   ██╗██████╗  ██████╗ ██╗    ██╗███████╗██████╗     ██████╗ ██████╗ ███╗   ███╗"
-echo "██║    ██║████╗  ██║██╔══██╗██╔═══██╗██║    ██║██╔════╝██╔══██╗   ██╔════╝██╔═══██╗████╗ ████║"
-echo "██║ █╗ ██║██╔██╗ ██║██████╔╝██║   ██║██║ █╗ ██║█████╗  ██████╔╝   ██║     ██║   ██║██╔████╔██║"
-echo "██║███╗██║██║╚██╗██║██╔═══╝ ██║   ██║██║███╗██║██╔══╝  ██╔══██╗   ██║     ██║   ██║██║╚██╔╝██║"
-echo "╚███╔███╔╝██║ ╚████║██║     ╚██████╔╝╚███╔███╔╝███████╗██║  ██║██╗╚██████╗╚██████╔╝██║ ╚═╝ ██║"
-echo " ╚══╝╚══╝ ╚═╝  ╚═══╝╚═╝      ╚═════╝  ╚══╝╚══╝ ╚══════╝╚═╝  ╚═╝╚═╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝"
+echo "           ██████╗██╗    ██╗██████╗     ██╗███╗   ██╗███████╗████████╗ █████╗ ██╗     ██╗               "
+echo "          ██╔════╝██║    ██║██╔══██╗    ██║████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║     ██║               "
+echo "█████╗    ██║     ██║ █╗ ██║██████╔╝    ██║██╔██╗ ██║███████╗   ██║   ███████║██║     ██║         █████╗"
+echo "╚════╝    ██║     ██║███╗██║██╔═══╝     ██║██║╚██╗██║╚════██║   ██║   ██╔══██║██║     ██║         ╚════╝"
+echo "          ╚██████╗╚███╔███╔╝██║         ██║██║ ╚████║███████║   ██║   ██║  ██║███████╗███████╗          "
+echo "           ╚═════╝ ╚══╝╚══╝ ╚═╝         ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝          "
+                                                                                                        
 
 echo ""
 echo "       ####################### CentOS Web Panel Configurator #######################          "
@@ -24,7 +25,7 @@ echo "Este script instala y pre-configura CentOS Web Panel (CTRL + C para cancel
 sleep 10
 
 echo "####### CONFIGURANDO CENTOS #######"
-wget https://raw.githubusercontent.com/wnpower/Linux-Config/master/configure_centos.sh -O "$CWD/configure_centos.sh" && bash "$CWD/configure_centos.sh"
+wget https://github.com/AlanMartines/CWP-Config/blob/master/configure_centos.sh -O "$CWD/configure_centos.sh" && bash "$CWD/configure_centos.sh"
 
 echo "####### PRE-CONFIGURACION CWP ##########"
 echo "Desactivando yum-cron..."

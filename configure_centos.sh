@@ -6,11 +6,12 @@ LOGFILE="/var/log/configure_linux.log"
 SSH_PORT=2022
 
 if [ ! -f /etc/redhat-release ]; then
-	echo "CentOS no detectado, abortando."
+	echo "CentOS nã detectado, abortando."
 	exit 0
 fi
 
-echo "Actualizando SO..."
+echo "Atualizando SO..."
+yum -y install wget
 yum update -y
 yum groupinstall "Base" --skip-broken -y
 
@@ -42,7 +43,6 @@ echo "Reescribiendo /etc/resolv.conf..."
 
 echo "nameserver 8.8.8.8" > /etc/resolv.conf # Google
 echo "nameserver 8.8.4.4" >> /etc/resolv.conf # Google
-
 
 echo "Configurando SSH..."
 sed -i 's/^X11Forwarding.*/X11Forwarding no/' /etc/ssh/sshd_config
