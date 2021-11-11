@@ -25,7 +25,8 @@ echo "Este script instala e pré-configura o CentOS Web Panel (CTRL + C para can
 sleep 10
 
 echo "####### CONFIGURANDO CENTOS #######"
-wget https://github.com/AlanMartines/CWP-Config/blob/master/configure_centos.sh -O "$CWD/configure_centos.sh" && bash "$CWD/configure_centos.sh"
+
+curl -sL https://raw.githubusercontent.com/AlanMartines/CWP-Config/master/configure_centos.sh  | sudo bash -
 
 echo "####### PRÉ-CONFIGURAÇÃO CWP ##########"
 echo "Desactivando yum-cron..."
