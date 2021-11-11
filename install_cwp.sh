@@ -31,10 +31,6 @@ echo "####### PRÉ-CONFIGURAÇÃO CWP ##########"
 echo "Desactivando yum-cron..."
 yum erase yum-cron -y
 
-echo "####### INSTALL NET TOOLS ##########"
-echo "Instalando net-tools..."
-yum install net-tools -y
-
 echo "######### CONFIGURANDO DNS E REDE ########"
 RED=$(route -n | awk '$1 == "0.0.0.0" {print $8}')
 ETHCFG="/etc/sysconfig/network-scripts/ifcfg-$RED"
