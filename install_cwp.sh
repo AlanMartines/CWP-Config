@@ -17,7 +17,7 @@ echo ""
 echo ""
 
 if [ ! -f /etc/redhat-release ]; then
-	echo "No se detectó CentOS. Abortando."
+	echo "CentOS nao detectado. Abortando..."
 	exit 0
 fi
 
@@ -30,6 +30,10 @@ wget https://github.com/AlanMartines/CWP-Config/blob/master/configure_centos.sh 
 echo "####### PRÉ-CONFIGURAÇÃO CWP ##########"
 echo "Desactivando yum-cron..."
 yum erase yum-cron -y
+
+echo "####### INSTALL NET TOOLS ##########"
+echo "Instalando net-tools..."
+yum install net-tools -y
 
 echo "######### CONFIGURANDO DNS E REDE ########"
 RED=$(route -n | awk '$1 == "0.0.0.0" {print $8}')
