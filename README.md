@@ -14,7 +14,7 @@ hostname srv1.example.com
 
 ```sh
 
-curl -sL https://raw.githubusercontent.com/AlanMartines/CWP-Config/master/install_cwp.sh | sudo bash -
+wget https://github.com/AlanMartines/CWP-Config/blob/master/install_cwp.sh -O install_cwp.sh && bash install_cwp.sh
 
 ```
 
