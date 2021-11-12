@@ -11,7 +11,7 @@ if [ ! -f /etc/redhat-release ]; then
 fi
 
 echo "Atualizando SO..."
-yum -y install wget; yum -y install yum-utils net-tools -y
+yum -y install wget; yum install -y yum-utils net-tools
 yum update -y
 yum groupinstall "Base" --skip-broken -y
 

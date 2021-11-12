@@ -31,6 +31,7 @@ curl -sL https://raw.githubusercontent.com/AlanMartines/CWP-Config/master/config
 echo "####### PRÉ-CONFIGURAÇÃO CWP ##########"
 echo "Desactivando yum-cron..."
 yum erase yum-cron -y
+yum install -y yum-utils net-tools
 
 echo "######### CONFIGURANDO DNS E REDE ########"
 RED=$(route -n | awk '$1 == "0.0.0.0" {print $8}')
