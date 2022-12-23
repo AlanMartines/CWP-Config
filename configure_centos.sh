@@ -17,7 +17,8 @@ yum groupinstall "Base" --skip-broken -y
 
 if grep -i "release 8" /etc/redhat-release > /dev/null; then
 	# En RHL8 mejor instalar epel porque hay paquetes faltantes
-	yum install epel-release -y
+	yum install epel-release dnf-plugins-core -y
+	yum config-manager --set-enabled powertools
 fi
 
 yum install screen -y
@@ -117,11 +118,8 @@ else
         ntpdate 0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org 0.south-america.pool.ntp.org
 fi
 
-if [ -f /usr/share/zoneinfo/America/Buenos_Aires ]; then
-        echo "Setando timezone a America/Caracas..."
-        mv /etc/localtime /etc/localtime.old
-        ln -s /usr/share/zoneinfo/America/Caracas /etc/localtime
-fi
+ echo "Setando timezone a America/Caracas..."
+timedatectl set-timezone "America/Caracas"
 
 echo "Setando na BIOS..."
 hwclock -r
@@ -150,5 +148,8 @@ done
 if ! (grep -i "release 8" /etc/redhat-release > /dev/null); then
 	chmod -x /etc/cron.daily/mlocate
 fi
+
+# DESINSTALAR POSTFIX
+yum remove postfix -y
 
 echo "Finalizado!"
