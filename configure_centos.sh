@@ -3,7 +3,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 CWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 LOGFILE="/var/log/configure_linux.log"
 
-SSH_PORT=2022
+SSH_PORT=2280
 
 if [ ! -f /etc/redhat-release ]; then
 	echo "CentOS não detectado, abortando."
@@ -66,7 +66,7 @@ service sshd restart
 
 # SI TIENE SOLO IPTABLES
 if [ -f /etc/sysconfig/iptables ]; then
-	sed -i 's/dport 22 /dport 2022 /' /etc/sysconfig/iptables
+	sed -i 's/dport 22 /dport 2280 /' /etc/sysconfig/iptables
 	service iptables restart 2>/dev/null
 fi
 
@@ -75,8 +75,8 @@ if systemctl is-enabled firewalld | grep "^enabled$" > /dev/null; then
 	if systemctl is-active firewalld | grep "^inactive$" > /dev/null; then
 		service firewalld restart
 	fi
-	firewall-cmd --permanent --add-port=2022/tcp > /dev/null
-	firewall-offline-cmd --add-port=2022/tcp > /dev/null
+	firewall-cmd --permanent --add-port=2280/tcp > /dev/null
+	firewall-offline-cmd --add-port=2280/tcp > /dev/null
 	firewall-cmd --reload 
 fi
 
